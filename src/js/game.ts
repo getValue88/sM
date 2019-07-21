@@ -55,6 +55,9 @@ export default class Game {
     public getKeyboard(): Keyboard {
         return this.keyboard;
     }
+    public getMouse(): Mouse{
+        return this.mouse;
+    }
 
     public startGame() {
         this.grass.load();

@@ -1,7 +1,11 @@
 # sM
-First project using canvas HTML5 and typescript
+First project using canvas HTML5 and typescript (WIP)
+    
+    npm i --> install all dependencies.
 
-    npm run compile
+    npm run compile 
+
+    then execute index.html on your favourite browser.
 
 How To Play:
 

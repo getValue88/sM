@@ -46,14 +46,12 @@ export default class PcHud extends Canvas {
             this.context.drawImage(this.pc, this.w * .1, this.h, this.w * .5, this.h * .5);
             this.isDraw = true;
             this.showItems(this.player.getPc());
-
+            this.canvas.classList.add("zIndex");
 
             //si esta dibujado, esconderlo
         } else {
             this.clearInv();
         }
-        this.canvas.classList.toggle("zIndex");
-        console.log(this.canvas.classList);
     }
 
     public isdraw(): boolean {
@@ -63,6 +61,7 @@ export default class PcHud extends Canvas {
     public clearInv(): void {
         this.context.clearRect(this.w * .05, this.h * .95, this.w * 16.9, this.h * 9.1);
         this.isDraw = false;
+        this.canvas.classList.remove("zIndex");
     }
 
     private showItems(arr: number[]) {

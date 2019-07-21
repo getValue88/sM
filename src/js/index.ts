@@ -18,9 +18,15 @@ window.onload = () => {
     window.addEventListener('keydown', function (e) {
         game.getKeyboard().onKeypress(e, game.getGrass(), game.getSolid());
     })
-    window.addEventListener('click', function (e) {
-        // mouse.onClickHud(e);
-    })
+    game.getHud().getContext().canvas.addEventListener('click', function (e) {
+        game.getMouse().onClickHud(e);
+    });
+     game.getInvHud().getContext().canvas.addEventListener('click', function (e) {
+        game.getMouse().onClickInvHud(e);
+    });
+    game.getPcHud().getContext().canvas.addEventListener('click', function (e) {
+        game.getMouse().onClickPcHud(e);
+    }); 
 }
 
 function loop() {

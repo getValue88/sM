@@ -45,13 +45,11 @@ export default class ItemHud extends Canvas {
             this.context.drawImage(this.bag, this.canvas.width / 2 - this.w * 3, this.h, this.w * .5, this.h * .5);
             this.isDraw = true;
             this.showItems(this.player.getInv());
-
+            this.canvas.classList.add("zIndex");
             //si esta dibujado, esconderlo
         } else {
             this.clearInv();
         }
-        this.canvas.classList.toggle("zIndex");
-        console.log(this.canvas.classList);
     }
 
     public isdraw(): boolean {
@@ -61,6 +59,7 @@ export default class ItemHud extends Canvas {
     public clearInv(): void {
         this.context.clearRect(this.canvas.width / 2 - this.w * 3.05, this.h * .95, this.w * 6.1, this.h * 9.1);
         this.isDraw = false;
+        this.canvas.classList.remove("zIndex");
     }
 
     private showItems(arr: number[]) {

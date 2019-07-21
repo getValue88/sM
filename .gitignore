@@ -1,2 +1,8 @@
-./src/*.js
+./*.js
 node_modules
+src/js/*.js
+src/js/controls/*.js
+src/js/player/*.js
+src/js/ui/*.js
+src/js/ui/hud/*.js
+src/js/ui/map/*.js
