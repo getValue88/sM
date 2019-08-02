@@ -1,5 +1,6 @@
 import Canvas from "../canvas";
 import Player from '../../player/player'
+import pk from "../../data/dex";
 
 export default class Hud extends Canvas {
     private w = this.canvas.width / 17
@@ -22,21 +23,21 @@ export default class Hud extends Canvas {
         this.player = player;
     }
 
-    public draw() {
+    public draw(): void {
         this.drawBorders();
         this.drawBoxes();
         this.drawImgs();
         this.drawMoney();
     }
 
-    public refreshMoney() {
+    public refreshMoney(): void {
         this.context.clearRect(this.w * .5, this.h * .1, this.w * .9, this.h * .39);
         this.context.fillStyle = "rgba(77, 77, 77, .5)"
         this.context.fillRect(this.w * .5, this.h * .1, this.w * .9, this.h * .39);
         this.drawMoney();
     }
 
-    public showMessageTop(object: string, num: string) {
+    public showMessageTop(object: string, num: string): void {
         let string: string = "";
         let img = new Image();
 
@@ -47,7 +48,7 @@ export default class Hud extends Canvas {
             this.context.fillStyle = "rgba(77, 77, 77, .5)";
             this.context.fillRect(this.canvas.width / 2 - this.w * 3, this.h * .1, this.w * 6, this.h * .6);
             img.src = `img/${object}/${num}.png`;
-            string = `The pokemon #${num} was catched!`;
+            string = `${pk[parseInt(num) - 1].name} was catched!`;
 
             //si es item y...
         } else if (object == "item") {
@@ -81,13 +82,13 @@ export default class Hud extends Canvas {
     }
 
     //borrar mensaje superior central
-    private deleteMsg() {
+    private deleteMsg(): void {
         setTimeout(() => {
             this.context.clearRect(this.canvas.width / 2 - this.w * 3, this.h * .1, this.w * 6, this.h * .6);
         }, 3000);
     }
 
-    private drawBorders() {
+    private drawBorders(): void {
         let x = .9;
         this.context.fillStyle = "black"
         for (let i = 0; i < 4; i++) {
@@ -100,7 +101,7 @@ export default class Hud extends Canvas {
         this.context.stroke();
     }
 
-    private drawBoxes() {
+    private drawBoxes(): void {
         let x = .9;
         this.context.fillStyle = "rgba(77, 77, 77, .5)"
         for (let i = 0; i < 4; i++) {
@@ -113,7 +114,7 @@ export default class Hud extends Canvas {
         this.context.stroke();
     }
 
-    private drawImgs() {
+    private drawImgs(): void {
         this.context.drawImage(this.bag, this.canvas.width - this.w * 3.6, this.canvas.height - this.h * .9, this.w * .8, this.h * .8);
         this.context.drawImage(this.pc, this.canvas.width - this.w * 2.7, this.canvas.height - this.h * .9, this.w * .8, this.h * .8);
         this.context.drawImage(this.chat, this.canvas.width - this.w * 1.8, this.canvas.height - this.h * .9, this.w * .8, this.h * .8);
@@ -121,7 +122,7 @@ export default class Hud extends Canvas {
         this.context.drawImage(this.coin, this.w * .1, this.h * .1, this.w * .4, this.h * .4);
     }
 
-    private drawMoney() {
+    private drawMoney(): void {
         this.context.font = "2.5vw Georgia";
         this.context.fillStyle = "white";
         this.context.textBaseline = "middle";

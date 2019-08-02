@@ -4,7 +4,7 @@ import Canvas from "../canvas";
 export default class Grass extends Canvas {
     private content: Tile[][]
 
-    constructor(canvas: HTMLCanvasElement) {
+    public constructor(canvas: HTMLCanvasElement) {
         super(canvas);
 
         this.content = new Array(11);
@@ -19,7 +19,7 @@ export default class Grass extends Canvas {
         }
     }
 
-    public load() {
+    public load(): void {
         for (let i = 0; i < this.content.length; i++) {
             for (let j = 0; j < this.content[i].length; j++) {
                 this.content[i][j].setGrassSrc();
@@ -38,7 +38,7 @@ export default class Grass extends Canvas {
                 this.content[i][j].getSrc().onload = () => {
                     for (let k = 0; k < this.content.length; k++) {
                         for (let l = 0; l < this.content[i].length; l++) {
-                            this.context.drawImage(this.content[k][l].getSrc(), x, y, w-.5, h-.5);
+                            this.context.drawImage(this.content[k][l].getSrc(), x, y, w - .5, h - .5);
                             x += w;
                             if (x >= this.canvas.width) {
                                 y += h;
@@ -55,7 +55,7 @@ export default class Grass extends Canvas {
         return this.content[x][y];
     }
 
-    public getContent() {
+    public getContent(): Tile[][] {
         return this.content;
     }
 }

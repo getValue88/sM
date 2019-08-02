@@ -21,6 +21,7 @@ export default class Player {
     public getInv(): number[] {
         return this.inventory;
     }
+    
     public getPc(): number[] {
         return this.pc;
     }
@@ -36,4 +37,17 @@ export default class Player {
         this.money += n;
     }
 
+    public getImgArr(): HTMLImageElement[] {
+        let imgs: HTMLImageElement[] = [];
+        let j = 0;
+
+        for (let i = 0; i < this.getPc().length; i++) {
+            if (this.getPc()[i] > 0) {
+                imgs[j] = new Image();
+                imgs[j].setAttribute('src', `img/mons/${i + 1}.png`);
+                j++;
+            }
+        }
+        return imgs;
+    }
 }

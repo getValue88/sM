@@ -49,9 +49,11 @@ export default class Tile {
             this.content.src = "";
         }
     }
+
     public getWidth():number{
         return this.width;
     }
+
     public getHeight():number{
         return this.height;
     }

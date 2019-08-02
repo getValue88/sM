@@ -6,3 +6,5 @@ src/js/player/*.js
 src/js/ui/*.js
 src/js/ui/hud/*.js
 src/js/ui/map/*.js
+src/js/data/*.js
+!bundle.js

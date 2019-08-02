@@ -7,9 +7,8 @@ import Hud from '../ui/hud/hud'
 export default class Action {
     private player: Player
     private hud: Hud
-    // private itemHud: ItemHud = new ItemHud(<HTMLCanvasElement>document.querySelector("#itemHud"))
 
-    constructor(hud: Hud, player: Player) {
+    public constructor(hud: Hud, player: Player) {
         this.hud = hud;
         this.player = player;
     }

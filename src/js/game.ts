@@ -7,6 +7,8 @@ import ItemHud from "./ui/hud/itemHud";
 import PcHud from "./ui/hud/pcHud";
 import Keyboard from "./controls/keyboard";
 import Mouse from "./controls/mouse";
+import descHud from "./ui/hud/descHud";
+import DescHud from "./ui/hud/descHud";
 
 export default class Game {
     private grass: Grass
@@ -16,10 +18,11 @@ export default class Game {
     private hud: Hud
     private invHud: ItemHud
     private pcHud: PcHud
+    private descHud: descHud
     private keyboard: Keyboard
     private mouse: Mouse
 
-    public constructor(gMapCanvas: HTMLCanvasElement, sMapCanvas: HTMLCanvasElement, hudCanvas: HTMLCanvasElement, itemHudCanvas: HTMLCanvasElement, pcHudCanvas: HTMLCanvasElement) {
+    public constructor(gMapCanvas: HTMLCanvasElement, sMapCanvas: HTMLCanvasElement, hudCanvas: HTMLCanvasElement, itemHudCanvas: HTMLCanvasElement, pcHudCanvas: HTMLCanvasElement, descHud: HTMLCanvasElement) {
         this.player = new Player();
         this.grass = new Grass(gMapCanvas);
         this.solid = new Solid(sMapCanvas);
@@ -27,8 +30,9 @@ export default class Game {
         this.action = new Action(this.hud, this.player);
         this.invHud = new ItemHud(itemHudCanvas, this.player);
         this.pcHud = new PcHud(pcHudCanvas, this.player);
-        this.keyboard = new Keyboard(this.action, this.invHud, this.pcHud);
-        this.mouse = new Mouse(this.hud,this.invHud,this.pcHud);
+        this.descHud = new DescHud(descHud);
+        this.keyboard = new Keyboard(this.action, this.invHud, this.pcHud, this.player);
+        this.mouse = new Mouse(this.hud, this.invHud, this.pcHud, this.player, this.descHud);
     }
 
     public getGrass(): Grass {
@@ -52,14 +56,17 @@ export default class Game {
     public getPcHud(): PcHud {
         return this.pcHud;
     }
+    public getDescHud(): DescHud {
+        return this.descHud;
+    }
     public getKeyboard(): Keyboard {
         return this.keyboard;
     }
-    public getMouse(): Mouse{
+    public getMouse(): Mouse {
         return this.mouse;
     }
 
-    public startGame() {
+    public startGame(): void {
         this.grass.load();
         this.solid.load();
         this.hud.draw();

@@ -3,6 +3,7 @@ import Solid from '../ui/map/solid'
 import Action from './action';
 import ItemHud from '../ui/hud/itemHud';
 import PcHud from '../ui/hud/pcHud';
+import Player from '../player/player';
 
 export default class Keyboard {
     private keyboardEv?: KeyboardEvent
@@ -11,11 +12,13 @@ export default class Keyboard {
     private prevKey: number = 83
     private itemHud: ItemHud
     private pcHud: PcHud
+    private player: Player
 
-    constructor(action: Action, itemHud: ItemHud, pcHud: PcHud) {
+    constructor(action: Action, itemHud: ItemHud, pcHud: PcHud, player: Player) {
         this.action = action;
         this.itemHud = itemHud;
         this.pcHud = pcHud;
+        this.player = player;
     }
 
     public onKeypress(e: KeyboardEvent, grassMap: Grass, solidMap: Solid): void {
@@ -89,6 +92,45 @@ export default class Keyboard {
                 this.itemHud.clearInv();
                 this.itemHud.getContext().canvas.classList.remove('zIndex');
                 this.pcHud.draw();
+                break;
+            }
+            
+        }
+    }
+    public onKeyPressPcHud(e: KeyboardEvent){
+        this.keyboardEv = e;
+        if (this.keyboardEv)
+            this.keyCode = this.keyboardEv.keyCode;
+            // alert(this.keyCode)
+        switch(this.keyCode){
+            case 49: {
+                this.pcHud.clearBox();
+                this.pcHud.drawBox(this.player.getPc(), this.player.getImgArr(), 1);
+                this.pcHud.onBox(1);
+                break;
+            }
+            case 50: {
+                if (this.pcHud.getBox(2)) {
+                    this.pcHud.clearBox();
+                    this.pcHud.drawBox(this.player.getPc(), this.player.getImgArr(), 2);
+                    this.pcHud.onBox(2);
+                }
+                break;
+            }
+            case 51: {
+                if(this.pcHud.getBox(3)){
+                    this.pcHud.clearBox();
+                    this.pcHud.drawBox(this.player.getPc(), this.player.getImgArr(), 3);
+                    this.pcHud.onBox(3);
+                }
+                break;
+            }
+            case 52: {
+                if(this.pcHud.getBox(4)){
+                    this.pcHud.clearBox();
+                    this.pcHud.drawBox(this.player.getPc(), this.player.getImgArr(), 4);
+                    this.pcHud.onBox(4);
+                }
                 break;
             }
         }
