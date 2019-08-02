@@ -7,4 +7,5 @@ src/js/ui/*.js
 src/js/ui/hud/*.js
 src/js/ui/map/*.js
 src/js/data/*.js
+src/img/screenshots.png
 !bundle.js

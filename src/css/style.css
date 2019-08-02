@@ -70,3 +70,9 @@ body {
 #hud {
 	z-index: 3;
 }
+
+#preloader {
+	display: none;
+	visibility: hidden;
+	z-index: -999;
+}

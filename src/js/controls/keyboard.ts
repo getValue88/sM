@@ -25,6 +25,7 @@ export default class Keyboard {
         this.keyboardEv = e;
         if (this.keyboardEv)
             this.keyCode = this.keyboardEv.keyCode;
+
         switch (this.keyCode) {
             // W - up arrow
             case 87:
@@ -94,16 +95,19 @@ export default class Keyboard {
                 this.pcHud.draw();
                 break;
             }
-            
+
         }
     }
-    public onKeyPressPcHud(e: KeyboardEvent){
+
+    public onKeyPressPcHud(e: KeyboardEvent) {
+
         this.keyboardEv = e;
         if (this.keyboardEv)
             this.keyCode = this.keyboardEv.keyCode;
-            // alert(this.keyCode)
-        switch(this.keyCode){
+
+        switch (this.keyCode) {
             case 49: {
+
                 this.pcHud.clearBox();
                 this.pcHud.drawBox(this.player.getPc(), this.player.getImgArr(), 1);
                 this.pcHud.onBox(1);
@@ -118,7 +122,7 @@ export default class Keyboard {
                 break;
             }
             case 51: {
-                if(this.pcHud.getBox(3)){
+                if (this.pcHud.getBox(3)) {
                     this.pcHud.clearBox();
                     this.pcHud.drawBox(this.player.getPc(), this.player.getImgArr(), 3);
                     this.pcHud.onBox(3);
@@ -126,7 +130,7 @@ export default class Keyboard {
                 break;
             }
             case 52: {
-                if(this.pcHud.getBox(4)){
+                if (this.pcHud.getBox(4)) {
                     this.pcHud.clearBox();
                     this.pcHud.drawBox(this.player.getPc(), this.player.getImgArr(), 4);
                     this.pcHud.onBox(4);

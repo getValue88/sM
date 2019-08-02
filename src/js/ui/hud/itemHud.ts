@@ -90,7 +90,8 @@ export default class ItemHud extends Canvas {
                 lastBar = cant.lastIndexOf("/");
                 cant = cant.slice(lastBar + 1, cant.length - 4);
                 this.context.font = '2vw Georgia';
-                this.context.fillText("x" + arr[parseInt(cant) - 1], tx, ty);
+                if (arr[parseInt(cant) - 1] > 1)
+                    this.context.fillText(`${arr[parseInt(cant) - 1]}`, tx, ty);
 
                 tx += this.w * .7;
 

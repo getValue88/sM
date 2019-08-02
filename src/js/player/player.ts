@@ -7,10 +7,10 @@ export default class Player {
 
     public constructor() {
         for (let i = 0; i < this.pc.length; i++) {
-            this.pc[i] = 0;
+            this.pc[i] = 1;
         }
         for (let i = 0; i < this.inventory.length; i++) {
-            this.inventory[i] = 0;
+            this.inventory[i] = 1;
         }
     }
 

@@ -38,7 +38,7 @@ export default class Grass extends Canvas {
                 this.content[i][j].getSrc().onload = () => {
                     for (let k = 0; k < this.content.length; k++) {
                         for (let l = 0; l < this.content[i].length; l++) {
-                            this.context.drawImage(this.content[k][l].getSrc(), x, y, w - .5, h - .5);
+                            this.context.drawImage(this.content[k][l].getSrc(), x, y, w, h);
                             x += w;
                             if (x >= this.canvas.width) {
                                 y += h;
