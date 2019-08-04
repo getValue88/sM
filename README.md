@@ -15,18 +15,23 @@ How To Play:
 
 Lasts changes:
 
+ - Added basic item dictionary and a event to display the data.
+
  - Fixed an issue where images wasn't loading at first time.
 
- - Fixed button bar on Pc hud.
+ - Fixed button bar keydown event on Pc hud.
 
  - Display multiple pc boxes and switch between them.
 
  - Display each pkm description and stats.
 
- - Added dictionary for objects.(wip).
+ - Added dictionary for pkms.(wip 75 of 721).
 
  To do:
 
- - Add items dictionary and display the data.
+ - ~~Add items dictionary and display the data.~~
  - Add a shop to buy and sell things.
  - etc.
+
+
+ Any advice or contribution is welcome.

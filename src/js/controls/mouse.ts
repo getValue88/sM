@@ -61,6 +61,24 @@ export default class Mouse {
         if ((this.clientX >= this.w * 11 && this.clientX <= this.w * 11.5) && (this.clientY >= this.h && this.clientY <= this.h * 1.5)) {
             this.invHud.clearInv();
         }
+
+        //on each item
+        if ((this.clientX >= this.w * 5.7 && this.clientX <= this.w * 11.3) && (this.clientY >= this.h * 1.5 && this.clientY <= this.h * 10)) {
+            let x = Math.floor(((this.clientX - this.w * 5.7) / this.w) / .7)
+            let y = Math.floor(((this.clientY - this.h * 1.5) / this.h) / .85)
+            // alert(x + y * 8);
+            let n: number = x + y * 8;
+            let j = 0;
+
+            for (let i = 0; i < this.player.getInv().length; i++) {
+                if (this.player.getInv()[i] > 0)
+                    j++;
+                if (j > n) {
+                    this.descHud.drawItmDesc(i);
+                    break;
+                }
+            }
+        }
     }
 
     //pc hud
@@ -122,7 +140,7 @@ export default class Mouse {
                 if (this.player.getPc()[i] > 0)
                     j++;
                 if (j > n) {
-                    this.descHud.draw(i);
+                    this.descHud.drawPkmDesc(i);
                     break;
                 }
             }

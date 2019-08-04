@@ -46,7 +46,7 @@ export default class ItemHud extends Canvas {
             this.isDraw = true;
             this.showItems(this.player.getInv());
             this.canvas.classList.add("zIndex");
-            //si esta dibujado, esconderlo
+
         } else {
             this.clearInv();
         }

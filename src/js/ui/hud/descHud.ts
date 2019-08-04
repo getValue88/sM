@@ -1,4 +1,5 @@
 import * as pk from '../../data/dex'
+import item, * as itm from '../../data/item'
 import Canvas from '../canvas';
 
 export default class DescHud extends Canvas {
@@ -10,37 +11,53 @@ export default class DescHud extends Canvas {
         super(canvas);
     }
 
-    public draw(n: number): void {
-        //if is found on dictionary, draw description
+    //if is found on dictionary, draw description
+    public drawPkmDesc(n: number): void {
         if (pk.default[n] != undefined) {
 
             this.canvas.classList.add("zIndex");
             this.canvas.focus();
 
-            this.drawWindow();
-            this.displayAbilities(n);
-            this.displayNameNum(n);
-            this.displayImgs(n);
-            this.displayStats(n);
+            this.drawWindowPkmDesc();
+            this.displayAbilitiesPkmDesc(n);
+            this.displayNameNumPkmDesc(n);
+            this.displayImgsPkmDesc(n);
+            this.displayStatsPkmDesc(n);
         }
     }
+
+    public drawItmDesc(n: number): void {
+        if (item[n] != undefined) {
+
+            this.canvas.classList.add("zIndex");
+            this.canvas.focus();
+
+            this.dragWindowItmDesc();
+            this.drawNameItmDesc(n);
+            this.drawDescItemDesc(n);
+            this.drawImgItemDesc(n);
+        }
+    }
+
     public clearDescHud(): void {
-        this.context.clearRect(0, 0, innerWidth, innerHeight);
+        this.context.clearRect(0, 0, this.w * 17, this.h * 11);
         this.canvas.classList.remove("zIndex");
         this.canvas.blur();
     }
 
-    private drawWindow(): void {
-        //window background, border and title background
+    //window background, border and title background
+    private drawWindowPkmDesc(): void {
         this.context.fillStyle = "rgba(77, 77, 77, 1)";
         this.context.fillRect(this.canvas.width / 2 - this.w * 4.5, this.h * 2, this.w * 9, this.h * 5.75);
         this.context.fillStyle = "black";
+        this.context.beginPath();
         this.context.rect(this.canvas.width / 2 - this.w * 4.5, this.h * 2, this.w * 9, this.h * 5.75);
+        this.context.stroke();
         this.context.fillRect(this.canvas.width / 2 - this.w * 4.5, this.h * 2, this.w * 9, this.h * 1);
     }
 
-    private displayAbilities(n: number): void {
-        //abilitys background
+    private displayAbilitiesPkmDesc(n: number): void {
+        //abilities background
         this.context.fillRect(this.canvas.width / 2 - this.w * 4.5, this.h * 5.25, this.w * 4.5, this.h * .5);
         this.context.fillRect(this.canvas.width / 2 - this.w * 4.5, this.h * 6.5, this.w * 4.5, this.h * 1);
 
@@ -61,7 +78,7 @@ export default class DescHud extends Canvas {
         this.context.fillText(`${pk.default[n].hAbility}`, this.w * 5.3, this.h * 7.3);
     }
 
-    private displayNameNum(n: number): void {
+    private displayNameNumPkmDesc(n: number): void {
         // num
         this.context.fillStyle = "white";
         this.context.font = `${this.h * .2}px Arial Black`;
@@ -73,7 +90,7 @@ export default class DescHud extends Canvas {
         this.context.fillText(`${pk.default[n].name}`, this.canvas.width / 2, this.h * 2.65);
     }
 
-    private displayImgs(n: number): void {
+    private displayImgsPkmDesc(n: number): void {
         //pk type 1 image
         const imgType1 = new Image();
         imgType1.setAttribute('src', `img/types/${pk.default[n].type[0]}.png`);
@@ -98,7 +115,7 @@ export default class DescHud extends Canvas {
         }
     }
 
-    private displayStats(n: number): void {
+    private displayStatsPkmDesc(n: number): void {
         let aux = 3.25;
         const auxArr = ["hp", "atk", "def", "spa", "spd", "spe"];
         for (let i = 0; i < 6; i++) {
@@ -117,6 +134,42 @@ export default class DescHud extends Canvas {
             aux += .75;
         }
         this.context.stroke();
+    }
+
+    private dragWindowItmDesc(): void {
+        this.context.fillStyle = "rgba(77, 77, 77, 1)";
+        this.context.fillRect(this.canvas.width / 2 - this.w * 2.5, this.h * 2, this.w * 5, this.h * 3);
+        this.context.fillStyle = "black";
+        this.context.fillRect(this.canvas.width / 2 - this.w * 2.5, this.h * 2, this.w * 5, this.h * 1);
+        this.context.beginPath();
+        this.context.rect(this.canvas.width / 2 - this.w * 2.5, this.h * 2, this.w * 5, this.h * 3);
+        this.context.stroke();
+        this.context.closePath();
+    }
+
+    private drawNameItmDesc(n: number): void {
+
+        this.context.fillStyle = "white";
+        this.context.font = `${this.h * .3}px Arial Black`;
+        this.context.fillText(`${item[n].name}`, this.w * 7, this.h * 2.65);
+    }
+
+    private drawDescItemDesc(n: number): void {
+        this.context.fillStyle = "white";
+        this.context.font = `${this.h * .2}px Arial`;
+        let aux = 3.3;
+        for (let i = 0; i < item[n].desc.length; i++) {
+            this.context.fillText(`${item[n].desc[i]}`, this.w * 6.1, this.h * aux, this.w * 4.8);
+            aux += .3;
+        }
+    }
+
+    private drawImgItemDesc(n: number) {
+        let img = new Image();
+        img.setAttribute('src', `img/item/${item[n].num}.png`);
+        img.onload = () => {
+            this.context.drawImage(img, this.w * 6, this.h * 2, this.w * 1, this.h * 1);
+        }
     }
 }
 
